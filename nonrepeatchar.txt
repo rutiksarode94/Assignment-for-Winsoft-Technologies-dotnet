@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string str = "hello world";
+        List<char> nonRepeatingChars = FindNonRepeatingCharacters(str);
+
+        Console.WriteLine("Non-repeating characters:");
+        foreach (char ch in nonRepeatingChars)
+        {
+            Console.Write(ch + " ");
+        }
+    }
+
+    static List<char> FindNonRepeatingCharacters(string str)
+    {
+        Dictionary<char, int> charCounts = new Dictionary<char, int>();
+
+        
+        foreach (char ch in str)
+        {
+            if (charCounts.ContainsKey(ch))
+            {
+                charCounts[ch]++;
+            }
+            else
+            {
+                charCounts[ch] = 1;
+            }
+        }
+
+       
+        List<char> nonRepeatingChars = new List<char>();
+        foreach (var entry in charCounts)
+        {
+            if (entry.Value == 1)
+            {
+                nonRepeatingChars.Add(entry.Key);
+            }
+        }
+
+        return nonRepeatingChars;
+    }
+}
